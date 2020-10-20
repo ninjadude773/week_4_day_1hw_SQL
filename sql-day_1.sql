@@ -115,8 +115,6 @@ SELECT *
 FROM staff;
 SELECT *
 FROM rental;
--- need to get staff_id of max count staff_id in rental table then find that
--- employees name in the staff table
 SELECT fromInv.staff_id, staff.staff_ID, staff.first_name, fromInv.countSold
 FROM staff, (
 	SELECT rental.staff_id, COUNT(staff_id) countSold
@@ -143,7 +141,6 @@ SELECT *
 FROM film_actor;
 SELECT *
 FROM film;
--- got tired of using nested selects to trying out inner joins
 SELECT COUNT(film_actor.actor_id) actorsPerFilm, film.title 
 FROM film_actor
 INNER JOIN film ON film_actor.film_id = film.film_id
@@ -156,7 +153,6 @@ LIMIT 1;
 
 SELECT *
 FROM customer;
-
 SELECT COUNT(last_name) inglastnames
 FROM customer
 WHERE store_id = 1 AND last_name LIKE '%es';
@@ -168,7 +164,6 @@ WHERE store_id = 1 AND last_name LIKE '%es';
 
 SELECT *
 FROM payment;
-
 SELECT amount, COUNT(rental_id)
 FROM payment
 WHERE customer_id BETWEEN 380 and 430
@@ -182,7 +177,6 @@ FROM film;
 
 SELECT COUNT(DISTINCT rating)
 FROM film;
-
 SELECT rating, COUNT(rating)
 FROM film
 GROUP BY rating
